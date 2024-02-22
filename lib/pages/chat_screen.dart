@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:intl/intl.dart';
+import 'package:google_generative_ai/google_generative_ai.dart';
 
 import '../models/message.dart';
 import '../models/messages.dart';
@@ -13,33 +13,43 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  final TextEditingController _userMessage = TextEditingController();
+  TextEditingController _userMessage = TextEditingController();
   bool isLoading = false;
 
-  static const apiKey = "YOUR_API_KEY";
+  static const apiKey = "APT_KEY";
 
   final List<Message> _messages = [];
 
   final model = GenerativeModel(model: 'gemini-pro', apiKey: apiKey);
 
-  Future<void> sendMessage() async {
+  void sendMessage() async {
     final message = _userMessage.text;
     _userMessage.clear();
 
     setState(() {
       _messages.add(Message(
-          isUser: true, message: message, date: DateTime.now()));
+        isUser: true,
+        message: message,
+        date: DateTime.now(),
+      ));
       isLoading = true;
     });
 
     final content = [Content.text(message)];
     final response = await model.generateContent(content);
+
     setState(() {
       _messages.add(Message(
-          isUser: false,
-          message: response.text ?? "",
-          date: DateTime.now()));
-      isLoading = false;
+        isUser: false,
+        message: response.text ?? "",
+        date: DateTime.now(),
+      ));
+    });
+  }
+
+  void onAnimatedTextFinished() {
+    setState(() {
+      isLoading = false; // Set isLoading to false when animated text is finished
     });
   }
 
@@ -61,6 +71,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   isUser: message.isUser,
                   message: message.message,
                   date: DateFormat('HH:mm').format(message.date),
+                  onAnimatedTextFinished: onAnimatedTextFinished,
                 );
               },
             ),
@@ -70,32 +81,35 @@ class _ChatScreenState extends State<ChatScreen> {
             child: Row(
               children: [
                 Expanded(
-                  flex: 15,
+                  flex: 20,
                   child: TextFormField(
+                    maxLines: 6,
+                    minLines: 1,
                     controller: _userMessage,
                     decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.fromLTRB(20, 0, 10, 0),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(50)),
-                        hintText: 'Enter prompt'),
+                        hintText: 'Enter prompt',
+
+                    ),
                   ),
                 ),
                 const Spacer(),
                 Stack(
                   alignment: Alignment.center,
                   children: [
-
                     IconButton(
                       padding: const EdgeInsets.all(15),
-                      iconSize: 30,
+                      iconSize: isLoading ? 25 : 30,
                       style: ButtonStyle(
-                          backgroundColor:
-                          MaterialStateProperty.all(isLoading ? Colors.grey :Colors.black),
-                          foregroundColor:
-                          MaterialStateProperty.all(Colors.white),
-                          shape: MaterialStateProperty.all(
-                              const CircleBorder())),
+                        backgroundColor: MaterialStateProperty.all(
+                            isLoading ? Colors.grey : Colors.black),
+                        foregroundColor: MaterialStateProperty.all(Colors.white),
+                        shape: MaterialStateProperty.all(const CircleBorder()),
+                      ),
                       onPressed: () {
-                        if(!isLoading) {
+                        if (!isLoading) {
                           sendMessage();
                         }
                       },
