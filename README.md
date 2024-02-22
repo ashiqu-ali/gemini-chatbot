@@ -1,16 +1,47 @@
-# gemini_chatbot
+# Gemini Chat App
 
-A new Flutter project.
+Gemini Chat App is a simple Flutter application that demonstrates a chat interface powered by the Gemini Generative AI model. Users can interact by entering prompts, and the app responds with AI-generated content.
+
+## Features
+
+- **Chat Interface:** Users can send and receive messages in a chat-like interface.
+- **Generative AI Model:** Utilizes the Gemini Generative AI model to generate responses to user prompts.
+- **Loading State:** Displays a loading indicator when a message is being generated.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+To run the app locally, follow these steps:
 
-A few resources to get you started if this is your first Flutter project:
+1. Clone the repository:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+   ```bash
+   git clone https://github.com/ashiqu-ali/gemini-chatbot.git
+   ```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# Install Dependencies
+
+```bash
+flutter pub get
+```
+
+# Run the file
+```bash
+flutter run
+```
+
+# Dependencies
+- flutter/material.dart: Flutter framework for building the UI.
+- google_generative_ai: Dependency for interacting with the Gemini Generative AI model.
+- intl: Internationalization and localization package for formatting dates.
+
+## Configuration
+
+Before running the app, make sure to replace the placeholder API key in `lib/pages/chat_screen.dart` with a valid Gemini Generative AI API key.
+
+1. Visit [Gemini Generative AI](https://ai.google.dev/) and sign up for an account.
+2. Obtain your API key from the Gemini Generative AI dashboard.
+3. Replace the placeholder API key in `lib/pages/chat_screen.dart` with your actual API key.
+
+```dart
+static const apiKey = "YOUR_API_KEY";
+```
