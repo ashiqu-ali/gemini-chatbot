@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gemini_chatbot/utils/style.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 
@@ -16,7 +18,7 @@ class _ChatScreenState extends State<ChatScreen> {
   TextEditingController _userMessage = TextEditingController();
   bool isLoading = false;
 
-  static const apiKey = "APT_KEY";
+  static const apiKey = "AIzaSyA-ZPaDm3ioyP6F2BJQR8xRlegro7ISVok";
 
   final List<Message> _messages = [];
 
@@ -49,15 +51,17 @@ class _ChatScreenState extends State<ChatScreen> {
 
   void onAnimatedTextFinished() {
     setState(() {
-      isLoading = false; // Set isLoading to false when animated text is finished
+      isLoading = false;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: background,
       appBar: AppBar(
-        title: const Text('Gemini'),
+        backgroundColor: background,
+        title: Text('Gemini',style: GoogleFonts.poppins(color: white, fontWeight: FontWeight.bold)),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.end,
@@ -70,8 +74,8 @@ class _ChatScreenState extends State<ChatScreen> {
                 return Messages(
                   isUser: message.isUser,
                   message: message.message,
-                  date: DateFormat('HH:mm').format(message.date),
-                  onAnimatedTextFinished: onAnimatedTextFinished,
+                  date: DateFormat('HH:mm').format(message.date), onAnimatedTextFinished: onAnimatedTextFinished,
+                  // onAnimatedTextFinished: onAnimatedTextFinished,
                 );
               },
             ),
@@ -91,8 +95,11 @@ class _ChatScreenState extends State<ChatScreen> {
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(50)),
                         hintText: 'Enter prompt',
+                      hintStyle: hintText,
 
                     ),
+                    style: promptText,
+
                   ),
                 ),
                 const Spacer(),

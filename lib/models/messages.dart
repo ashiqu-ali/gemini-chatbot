@@ -1,11 +1,13 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:gemini_chatbot/utils/style.dart';
 
 class Messages extends StatelessWidget {
   final bool isUser;
   final String message;
   final String date;
   final Function onAnimatedTextFinished;
+
 
   const Messages({
     Key? key,
@@ -25,7 +27,7 @@ class Messages extends StatelessWidget {
         right: isUser ? 10 : 100,
       ),
       decoration: BoxDecoration(
-        color: isUser ? const Color.fromARGB(255, 9, 48, 79) : Colors.grey.shade300,
+        color: isUser ? userChat : resChat,
         borderRadius: BorderRadius.only(
           topLeft: const Radius.circular(10),
           bottomLeft: isUser ? const Radius.circular(10) : Radius.zero,
@@ -39,22 +41,26 @@ class Messages extends StatelessWidget {
           if (!isUser)
             AnimatedTextKit(
               animatedTexts: [
-                TyperAnimatedText(message, textStyle: const TextStyle(color: Colors.black)),
+                TyperAnimatedText(message, textStyle: messageText),
               ],
               totalRepeatCount: 1,
-              isRepeatingAnimation: false,
-              onFinished: (){
+              onFinished: () {
                 onAnimatedTextFinished();
               },
             ),
           if (isUser)
             Text(
               message,
-              style: const TextStyle(color: Colors.white),
+              style: messageText,
             ),
-          Text(
-            date,
-            style: TextStyle(color: isUser ? Colors.white : Colors.black),
+          Row(
+            mainAxisAlignment: isUser ? MainAxisAlignment.start : MainAxisAlignment.end,
+            children: [
+              Text(
+                "\n$date",
+                style: dateText,
+              ),
+            ],
           ),
         ],
       ),
