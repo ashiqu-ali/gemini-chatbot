@@ -92,45 +92,68 @@ class _ChatScreenState extends State<ChatScreen> {
                     controller: _userMessage,
                     decoration: InputDecoration(
                       contentPadding: const EdgeInsets.fromLTRB(20, 0, 10, 0),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(50)),
-                        hintText: 'Enter prompt',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(50),
+                      ),
+                      hintText: 'Enter prompt',
                       hintStyle: hintText,
-
+                      suffixIcon: GestureDetector(
+                        onTap: () {
+                          if (!isLoading) {
+                            sendMessage();
+                          }
+                        },
+                        child: isLoading
+                            ? Container(
+                          width: 20,
+                          height: 20,
+                          margin: EdgeInsets.all(10),
+                          child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(white),
+                            strokeWidth: 3,
+                          ),
+                        )
+                            : Icon(
+                          Icons.arrow_upward,
+                          color: _userMessage.text.isNotEmpty ? Colors.white : Color(0x5A6C6C65),
+                        ),
+                      ),
                     ),
                     style: promptText,
-
+                    onChanged: (value) {
+                      setState(() {});
+                    },
                   ),
                 ),
                 const Spacer(),
-                Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    IconButton(
-                      padding: const EdgeInsets.all(15),
-                      iconSize: isLoading ? 25 : 30,
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(
-                            isLoading ? Colors.grey : Colors.black),
-                        foregroundColor: MaterialStateProperty.all(Colors.white),
-                        shape: MaterialStateProperty.all(const CircleBorder()),
-                      ),
-                      onPressed: () {
-                        if (!isLoading) {
-                          sendMessage();
-                        }
-                      },
-                      icon: Icon(
-                        isLoading ? Icons.square : Icons.arrow_upward,
-                      ),
-                    ),
-                    if (isLoading)
-                      const CircularProgressIndicator(
-                        valueColor:
-                        AlwaysStoppedAnimation<Color>(Colors.white),
-                      ),
-                  ],
-                )
+                // Stack(
+                //   alignment: Alignment.center,
+                //   children: [
+                //     // IconButton(
+                //     //   padding: const EdgeInsets.all(15),
+                //     //   iconSize: isLoading ? 25 : 30,
+                //     //   style: ButtonStyle(
+                //     //     backgroundColor: MaterialStateProperty.all(
+                //     //         isLoading ? Colors.grey : Colors.black),
+                //     //     foregroundColor: MaterialStateProperty.all(Colors.white),
+                //     //     shape: MaterialStateProperty.all(const CircleBorder()),
+                //     //   ),
+                //     //   onPressed: () {
+                //     //     if (!isLoading) {
+                //     //       sendMessage();
+                //     //     }
+                //     //   },
+                //     //   icon: Icon(
+                //     //     isLoading ? Icons.square : Icons.arrow_upward,
+                //     //   ),
+                //     // ),
+                //     // if (isLoading)
+                //     //   const CircularProgressIndicator(
+                //     //     valueColor:
+                //     //     AlwaysStoppedAnimation<Color>(Colors.white),
+                //     //   ),
+                //   ],
+                // )
               ],
             ),
           )
