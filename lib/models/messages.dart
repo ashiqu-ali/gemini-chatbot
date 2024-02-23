@@ -1,5 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:gemini_chatbot/utils/size.dart';
 import 'package:gemini_chatbot/utils/style.dart';
 
 class Messages extends StatelessWidget {
@@ -21,18 +22,18 @@ class Messages extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(15),
-      margin: const EdgeInsets.symmetric(vertical: 15).copyWith(
-        left: isUser ? 100 : 10,
-        right: isUser ? 10 : 100,
+      padding: const EdgeInsets.all(small),
+      margin: const EdgeInsets.symmetric(vertical: small).copyWith(
+        left: isUser ? 100 : xsmall,
+        right: isUser ? xsmall : 100,
       ),
       decoration: BoxDecoration(
         color: isUser ? userChat : resChat,
         borderRadius: BorderRadius.only(
-          topLeft: const Radius.circular(10),
-          bottomLeft: isUser ? const Radius.circular(10) : Radius.zero,
-          topRight: const Radius.circular(10),
-          bottomRight: !isUser ? const Radius.circular(10) : Radius.zero,
+          topLeft: const Radius.circular(xsmall),
+          bottomLeft: isUser ? const Radius.circular(xsmall) : Radius.zero,
+          topRight: const Radius.circular(xsmall),
+          bottomRight: !isUser ? const Radius.circular(xsmall) : Radius.zero,
         ),
       ),
       child: Column(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gemini_chatbot/utils/size.dart';
 import 'package:gemini_chatbot/utils/style.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -18,7 +19,7 @@ class _ChatScreenState extends State<ChatScreen> {
   TextEditingController _userMessage = TextEditingController();
   bool isLoading = false;
 
-  static const apiKey = "AIzaSyA-ZPaDm3ioyP6F2BJQR8xRlegro7ISVok";
+  static const apiKey = "YOUR_API_KEY";
 
   final List<Message> _messages = [];
 
@@ -81,80 +82,47 @@ class _ChatScreenState extends State<ChatScreen> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 15),
-            child: Row(
-              children: [
-                Expanded(
-                  flex: 20,
-                  child: TextFormField(
-                    maxLines: 6,
-                    minLines: 1,
-                    controller: _userMessage,
-                    decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.fromLTRB(20, 0, 10, 0),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                      hintText: 'Enter prompt',
-                      hintStyle: hintText,
-                      suffixIcon: GestureDetector(
-                        onTap: () {
-                          if (!isLoading) {
-                            sendMessage();
-                          }
-                        },
-                        child: isLoading
-                            ? Container(
-                          width: 20,
-                          height: 20,
-                          margin: EdgeInsets.all(10),
-                          child: CircularProgressIndicator(
-                            valueColor: AlwaysStoppedAnimation<Color>(white),
-                            strokeWidth: 3,
-                          ),
-                        )
-                            : Icon(
-                          Icons.arrow_upward,
-                          color: _userMessage.text.isNotEmpty ? Colors.white : Color(0x5A6C6C65),
-                        ),
-                      ),
-                    ),
-                    style: promptText,
-                    onChanged: (value) {
-                      setState(() {});
+            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: small),
+            child: Expanded(
+              flex: 20,
+              child: TextFormField(
+                maxLines: 6,
+                minLines: 1,
+                controller: _userMessage,
+                decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.fromLTRB(medium, 0, small, 0),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(xlarge),
+                  ),
+                  hintText: 'Enter prompt',
+                  hintStyle: hintText,
+                  suffixIcon: GestureDetector(
+                    onTap: () {
+                      if (!isLoading) {
+                        sendMessage();
+                      }
                     },
+                    child: isLoading
+                        ? Container(
+                      width: medium,
+                      height: medium,
+                      margin: const EdgeInsets.all(xsmall),
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(white),
+                        strokeWidth: 3,
+                      ),
+                    )
+                        : Icon(
+                      Icons.arrow_upward,
+                      color: _userMessage.text.isNotEmpty ? Colors.white : const Color(0x5A6C6C65),
+                    ),
                   ),
                 ),
-                const Spacer(),
-                // Stack(
-                //   alignment: Alignment.center,
-                //   children: [
-                //     // IconButton(
-                //     //   padding: const EdgeInsets.all(15),
-                //     //   iconSize: isLoading ? 25 : 30,
-                //     //   style: ButtonStyle(
-                //     //     backgroundColor: MaterialStateProperty.all(
-                //     //         isLoading ? Colors.grey : Colors.black),
-                //     //     foregroundColor: MaterialStateProperty.all(Colors.white),
-                //     //     shape: MaterialStateProperty.all(const CircleBorder()),
-                //     //   ),
-                //     //   onPressed: () {
-                //     //     if (!isLoading) {
-                //     //       sendMessage();
-                //     //     }
-                //     //   },
-                //     //   icon: Icon(
-                //     //     isLoading ? Icons.square : Icons.arrow_upward,
-                //     //   ),
-                //     // ),
-                //     // if (isLoading)
-                //     //   const CircularProgressIndicator(
-                //     //     valueColor:
-                //     //     AlwaysStoppedAnimation<Color>(Colors.white),
-                //     //   ),
-                //   ],
-                // )
-              ],
+                style: promptText,
+                onChanged: (value) {
+                  setState(() {});
+                },
+              ),
             ),
           )
         ],
