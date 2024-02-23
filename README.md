@@ -4,9 +4,8 @@ Gemini Chat App is a simple Flutter application that demonstrates a chat interfa
 
 ## Features
 
-- **Chat Interface:** Users can send and receive messages in a chat-like interface.
+- **Chat Interface:** Users can send prompts in a chat-like interface.
 - **Generative AI Model:** Utilizes the Gemini Generative AI model to generate responses to user prompts.
-- **Loading State:** Displays a loading indicator when a message is being generated.
 
 ## Getting Started
 
@@ -18,13 +17,13 @@ To run the app locally, follow these steps:
    git clone https://github.com/ashiqu-ali/gemini-chatbot.git
    ```
 
-# Install Dependencies
+2. Install Dependencies
 
 ```bash
 flutter pub get
 ```
 
-# Run the file
+3. Run the app
 ```bash
 flutter run
 ```
