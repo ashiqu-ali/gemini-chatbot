@@ -19,7 +19,7 @@ class _ChatScreenState extends State<ChatScreen> {
   TextEditingController _userMessage = TextEditingController();
   bool isLoading = false;
 
-  static const apiKey = "AIzaSyA-ZPaDm3ioyP6F2BJQR8xRlegro7ISVok";
+  static const apiKey = "YOUR_API_KEY";
 
   final List<Message> _messages = [];
 
