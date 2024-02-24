@@ -2,15 +2,17 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:gemini_chatbot/utils/size.dart';
 import 'package:gemini_chatbot/utils/style.dart';
+import 'package:flutter/services.dart';
 
 class Messages extends StatelessWidget {
   final bool isUser;
   final String message;
   final String date;
   final Function onAnimatedTextFinished;
+  final isAnimated = ValueNotifier(false);
 
 
-  const Messages({
+  Messages({
     Key? key,
     required this.isUser,
     required this.message,
@@ -40,14 +42,23 @@ class Messages extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (!isUser)
-            AnimatedTextKit(
-              animatedTexts: [
-                TyperAnimatedText(message, textStyle: messageText),
-              ],
-              totalRepeatCount: 1,
-              onFinished: () {
-                onAnimatedTextFinished();
+            GestureDetector(
+              onLongPress: () async{
+                await Clipboard.setData(ClipboardData(text: message));
               },
+              child: AnimatedTextKit(
+                animatedTexts: [
+                  TyperAnimatedText(message, textStyle: messageText),
+                ],
+                totalRepeatCount: 1,
+                isRepeatingAnimation: false,
+                stopPauseOnTap: true,
+
+                onFinished: () {
+                  isAnimated.value = true;
+                  onAnimatedTextFinished();
+                },
+              ),
             ),
           if (isUser)
             Text(

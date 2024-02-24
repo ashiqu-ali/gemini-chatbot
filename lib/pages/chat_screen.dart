@@ -19,7 +19,7 @@ class _ChatScreenState extends State<ChatScreen> {
   TextEditingController _userMessage = TextEditingController();
   bool isLoading = false;
 
-  static const apiKey = "YOUR_API_KEY";
+  static const apiKey = "AIzaSyA-ZPaDm3ioyP6F2BJQR8xRlegro7ISVok";
 
   final List<Message> _messages = [];
 
@@ -82,7 +82,7 @@ class _ChatScreenState extends State<ChatScreen> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: small),
+            padding: const EdgeInsets.symmetric(horizontal: medium, vertical: small),
             child: Expanded(
               flex: 20,
               child: TextFormField(
@@ -98,7 +98,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   hintStyle: hintText,
                   suffixIcon: GestureDetector(
                     onTap: () {
-                      if (!isLoading) {
+                      if (!isLoading && _userMessage.text.isNotEmpty) {
                         sendMessage();
                       }
                     },
