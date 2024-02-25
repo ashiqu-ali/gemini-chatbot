@@ -1,8 +1,9 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:gemini_chatbot/utils/size.dart';
-import 'package:gemini_chatbot/utils/style.dart';
 import 'package:flutter/services.dart';
+
+import '../utils/size.dart';
+import '../utils/style.dart';
 
 class Messages extends StatelessWidget {
   final bool isUser;

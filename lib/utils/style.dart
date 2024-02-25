@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gemini_chatbot/utils/size.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../utils/size.dart';
 
 Color background = const Color(0xFF000500);
 Color userChat = const Color(0xFF1A80E5);

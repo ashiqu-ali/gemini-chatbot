@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gemini_chatbot/pages/chat_screen.dart';
+import '../pages/chat_screen.dart';
 
 main(){
   runApp(const MyApp());

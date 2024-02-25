@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:gemini_chatbot/utils/size.dart';
-import 'package:gemini_chatbot/utils/style.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
 
 import '../models/message.dart';
 import '../models/messages.dart';
+import '../utils/size.dart';
+import '../utils/style.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({Key? key}) : super(key: key);
@@ -19,7 +19,7 @@ class _ChatScreenState extends State<ChatScreen> {
   TextEditingController _userMessage = TextEditingController();
   bool isLoading = false;
 
-  static const apiKey = "YOUR_API_KEY";
+  static const apiKey = "YOUR API KEY";
 
   final List<Message> _messages = [];
 
