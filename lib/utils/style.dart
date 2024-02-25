@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gemini_chatbot/utils/size.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-Color background = const Color(0xFF121A21);
+Color background = const Color(0xFF000500);
 Color userChat = const Color(0xFF1A80E5);
 Color resChat = const Color(0xFF243647);
 Color chatColor = const Color(0xFF47698A);
