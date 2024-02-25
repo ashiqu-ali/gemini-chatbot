@@ -19,14 +19,14 @@ To run the app locally, follow these steps:
 
 2. Install Dependencies
 
-```bash
-flutter pub get
-```
+   ```bash
+   flutter pub get
+   ```
 
 3. Run the app
-```bash
-flutter run
-```
+   ```bash
+   flutter run
+   ```
 
 # Dependencies
 - flutter/material.dart: Flutter framework for building the UI.
